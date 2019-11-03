@@ -22,10 +22,10 @@
 </head>
 <body>
     <h1>WorkTimeWatch</h1>
-    {% include 'nav.html' %}
-    {% with module_name = 'Dashboard'%}{% include 'dashboard.html' %}{% endwith %}
-    {% with module_name = 'Mutieren'%}{% include 'mutate.html' %}{% endwith %}
-    {% with module_name = 'Vorerfassung'%}{% include 'pre_enter.html' %}{% endwith %}
-    {% with module_name = 'Konfiguration'%}{% include 'settings.html' %}{% endwith %}
+    {% include 'nav.jinja' %}
+    {% with module_name = 'Dashboard'%}{% include 'dashboard.jinja' %}{% endwith %}
+    {% with module_name = 'Mutieren'%}{% include 'mutate.jinja' %}{% endwith %}
+    {% with module_name = 'Vorerfassung'%}{% include 'pre_enter.jinja' %}{% endwith %}
+    {% with module_name = 'Konfiguration'%}{% include 'settings.jinja' %}{% endwith %}
 </body>
 </html>

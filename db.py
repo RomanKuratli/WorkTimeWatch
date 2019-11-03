@@ -6,15 +6,28 @@ CURSOR = CONN.cursor()
 print("Connection to sqlite3-database successfully established")
 
 
+def get_cursor():
+    return sqlite3.connect('WorkTimeWatch.sqlite').cursor()
+
+
+def get_table_app_params():
+    c = get_cursor()
+    return [
+        {"key": key, "value": value, "type": param_type}
+        for key, value, param_type in c.execute("SELECT key, value, type FROM app_params")
+    ]
+
+
 def get_params():
     ret = {}
-    for key, value, type in CURSOR.execute("SELECT key, value, type FROM app_params"):
+    c = get_cursor()
+    for key, value, param_type in c.execute("SELECT key, value, type FROM app_params"):
         casted_value = value
-        if type == 'STRING':
+        if param_type == 'STRING':
             pass
-        elif type == 'INTEGER':
+        elif param_type == 'INTEGER':
             casted_value = int(value)
-        elif type == 'TIME':
+        elif param_type == 'TIME':
             hour, minute = value.split(":", 2)
             hour = int(hour)
             minute = int(minute)

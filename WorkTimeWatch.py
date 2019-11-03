@@ -8,7 +8,18 @@ APP_TABS = ["Dashboard", "Mutieren", "Konfiguration", "Vorerfassung"]
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("index.html", app_params=APP_PARAMS, app_tabs=APP_TABS)
+    return render_template("index.jinja", app_params=APP_PARAMS, app_tabs=APP_TABS)
+
+
+@app.route("/params", methods=["GET"])
+def get_params():
+    return jsonify(db.get_table_app_params())
+
+
+@app.route("/params", methods=["POST"])
+def post_params():
+    print('POST: /params aufgerufen')
+    return jsonify({'msg': 'Application parameters successfully changed!'})
 
 
 if __name__ == "__main__":
