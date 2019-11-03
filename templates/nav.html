@@ -1,0 +1,5 @@
+<nav>
+    {% for tab in app_tabs %}
+    <button id="{{tab |lower}}_tab" class="tablinks" onclick="openTab('{{tab}}')">{{tab}}</button>
+    {% endfor %}
+</nav>

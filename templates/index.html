@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mutate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pre_enter.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='settings.css') }}">
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <title>WorkTimeWatch</title>
+</head>
+<body>
+    <h1>WorkTimeWatch</h1>
+    {% include 'nav.html' %}
+    {% with module_name = 'Dashboard'%}{% include 'dashboard.html' %}{% endwith %}
+    {% with module_name = 'Mutieren'%}{% include 'mutate.html' %}{% endwith %}
+    {% with module_name = 'Vorerfassung'%}{% include 'pre_enter.html' %}{% endwith %}
+    {% with module_name = 'Konfiguration'%}{% include 'settings.html' %}{% endwith %}
+</body>
+</html>
