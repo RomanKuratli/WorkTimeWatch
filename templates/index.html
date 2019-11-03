@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
 
+    <!-- stylesheet initialization: style.css has to be on top! -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
@@ -10,9 +11,11 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pre_enter.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='settings.css') }}">
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- javascript initialization: script.js has to be at the bottom! -->
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='mutate.js') }}"></script>
+    <script src="{{ url_for('static', filename='pre_enter.js') }}"></script>
+    <script src="{{ url_for('static', filename='settings.js') }}"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 
     <title>WorkTimeWatch</title>

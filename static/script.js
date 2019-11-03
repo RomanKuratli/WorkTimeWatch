@@ -17,6 +17,16 @@ function openTab(tabName) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(tabName).style.display = "block";
   document.getElementById(tabName.toLowerCase() + '_tab').className += " active";
+
+  console.log(`initialize tab $tabName`);
+  // call initialization code of the module
+  switch(tabName) {
+    case 'Dashboard': dashboardInit(); break;
+    case 'Mutieren': mutateInit(); break;
+    case 'Vorerfassung': preEnterInit(); break;
+    case 'Konfiguration': settingsInit(); break;
+    default:
+  }
 }
 
 window.onload = function() {
