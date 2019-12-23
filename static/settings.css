@@ -1,0 +1,9 @@
+#settingsTable {
+    border-collapse: collapse;
+}
+
+#settingsTable th {
+    background-color: #b39048;
+    color: white;
+}
+

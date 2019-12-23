@@ -4,34 +4,34 @@ light ocker: #e9e5de
 ocker: #b39048
 */
 body {
-    font-family: "Roboto", sans-serif;
-    background-color: #4b92a4;
-    padding-right: 20px;
-    padding-left: 20px;
+  font-family: "Roboto", sans-serif;
+  background-color: #4b92a4;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 a:link, body a:visited {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 a:hover {
-    color: #4b92a4;
-    text-decoration: none;
+  color: #4b92a4;
+  text-decoration: none;
 }
 
 a:active {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 h1 {
-    color: #b39048;
-    background-color: #e9e5de;
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 5px;
+  color: #b39048;
+  background-color: #e9e5de;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
 }
 
 h2 {
@@ -40,49 +40,49 @@ h2 {
 
 /* Style the tab */
 nav {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
 
 /* Style the buttons that are used to open the tab content */
 nav button {
-    font-size: 1.2em;
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    border-bottom: 5px solid inherit;
+  font-size: 1.2em;
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  border-bottom: 5px solid inherit;
 }
 
 /* Change background color of buttons on hover */
 nav button:hover {
-    background-color: #e9e5de;
-    border-bottom: 5px solid #b39048;
+  background-color: #e9e5de;
+  border-bottom: 5px solid #b39048;
 }
 
 /* Create an active/current tablink class */
 nav button.active {
-    color: #b39048;
-    font-weight: bold;
-    background-color: #ccc;
-    border-bottom: 5px solid #b39048;
+  color: #b39048;
+  font-weight: bold;
+  background-color: #ccc;
+  border-bottom: 5px solid #b39048;
 }
 
 /* Style the tab content */
 .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }
 
 .module_content {
-    background-color: #e9e5de;
-    padding: 10px;
+  background-color: #e9e5de;
+  padding: 10px;
 }
 
 /*
