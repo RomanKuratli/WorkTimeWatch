@@ -10,4 +10,9 @@
     </table>
     <button id="paramsTableSubmit" type="submit">Change</button>
 </form>
+<h3>Upload Times CSV</h3>
+<form id="uploadTimesCsvForm" method="POST" enctype=multipart/form-data action="/upload_times_csv">
+    <input id="uploadTimesCsvFile" type=file name=file>
+    <input id="uploadTimesCsvSubmit" "type=submit value=Upload>
+</form>
 {% endblock %}

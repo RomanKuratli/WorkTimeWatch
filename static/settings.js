@@ -1,28 +1,31 @@
 function settingsInit() {
     // initialization code, called from openModule()
-    console.log('settingsInit() called!');
+    console.log("settingsInit() called!");
     let paramId = 0;
-    let paramsTableBody = document.getElementById('paramsTableBody');
-    let paramsTableSubmit = document.getElementById('paramsTableSubmit');
+    let paramsTableBody = document.getElementById("paramsTableBody");
+    let paramsTableSubmit = document.getElementById("paramsTableSubmit");
     paramsTableSubmit.onclick = onSubmitAppParamChangeForm;
+    let uploadTimesCsvFile = document.getElementById("uploadTimesCsvFile");
+    let uploadTimesCsvSubmit = document.getElementById("uploadTimesCsvSubmit");
+    uploadTimesCsvSubmit.onclick = onSubmitUploadTimesCsv;
 
     // fetch application parameters
-    fetch(/*'http://localhost:5000*/ '/params', {
-        method: 'GET',
-        mode: 'no-cors'
+    fetch(/*"http://localhost:5000*/ "/params", {
+        method: "GET",
+        mode: "no-cors"
     })
     .then(response => response.json())
     .then(json => {
         // Empty the table body first
-        paramsTableBody.innerHTML = '';
+        paramsTableBody.innerHTML = "";
 
         for (param of json) {
             paramId++;
 
-            let row = document.createElement('tr');
+            let row = document.createElement("tr");
 
             let keyCell = row.insertCell();
-            let keyId = paramId + '_key';
+            let keyId = paramId + "_key";
             let keyInput = document.createElement("input");
             keyInput.setAttribute("id", keyId);
             keyInput.setAttribute("name", keyId);
@@ -32,7 +35,7 @@ function settingsInit() {
             keyCell.appendChild(keyInput);
 
             let valueCell = row.insertCell();
-            let valueId = paramId + '_value';
+            let valueId = paramId + "_value";
             let valueInput = document.createElement("input");
             valueInput.setAttribute("id", valueId);
             valueInput.setAttribute("name", valueId);
@@ -49,7 +52,7 @@ function settingsInit() {
 }
 
 function onSubmitAppParamChangeForm(event) {
-    console.log('submit clicked, event: ', event);
+    console.log("submit clicked, event: ", event);
 
     let newValues = {};
     let i = 1;
@@ -64,6 +67,33 @@ function onSubmitAppParamChangeForm(event) {
     }
 
     console.log("call parameters POST /config: ", newValues);
+    // call POST /config
+    fetch(/*"http://localhost:5000*/ "/params", {
+        method: "POST",
+        body: JSON.stringify(newValues)
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log("call to POST /params returned", json);
+    });
+
+    event.preventDefault();
+    return false;
+}
+
+function onSubmitUploadTimesCsv(event) {
+    console.log("submit UploadTimesCsv clicked, event: ", event);
+    console.log("file uploaded", uploadTimesCsvFile.files[0]);
+
+    // call POST /upload_times_csv
+    fetch("/upload_times_csv", {
+        method: "POST",
+        body: uploadTimesCsvFile.files[0]
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log("call to POST /upload_times_csv returned", json);
+    });
 
     event.preventDefault();
     return false;

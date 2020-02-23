@@ -5,23 +5,19 @@ CONN = sqlite3.connect('WorkTimeWatch.sqlite')
 CURSOR = CONN.cursor()
 print("Connection to sqlite3-database successfully established")
 
-
-def get_cursor():
-    return sqlite3.connect('WorkTimeWatch.sqlite').cursor()
-
-
+# ====== PARAMS ========
 def get_table_app_params():
-    c = get_cursor()
+    cur = sqlite3.connect('WorkTimeWatch.sqlite').cursor()
     return [
         {"key": key, "value": value, "type": param_type}
-        for key, value, param_type in c.execute("SELECT key, value, type FROM app_params")
+        for key, value, param_type in cur.execute("SELECT key, value, type FROM app_params")
     ]
 
 
 def get_params():
     ret = {}
-    c = get_cursor()
-    for key, value, param_type in c.execute("SELECT key, value, type FROM app_params"):
+    cur = sqlite3.connect('WorkTimeWatch.sqlite').cursor()
+    for key, value, param_type in cur.execute("SELECT key, value, type FROM app_params"):
         casted_value = value
         if param_type == 'STRING':
             pass
@@ -32,11 +28,47 @@ def get_params():
             hour = int(hour)
             minute = int(minute)
             casted_value = time(hour=hour, minute=minute)
-
         ret[key] = casted_value
-
     return ret
 
+def post_params(body): 
+    for key, value in body.items():
+        conn = sqlite3.connect('WorkTimeWatch.sqlite')
+        cur = conn.cursor()
+        cur.execute("UPDATE app_params SET value = ? WHERE key = ?", (value, key))
+        conn.commit()
+
+# === END PARAMS ========
+# ====== WORKING TIME ========
+def exists_working_time_entry(date):
+    conn = sqlite3.connect('WorkTimeWatch.sqlite')
+    cur = conn.cursor()
+    for key, value, param_type in cur.execute("SELECT dt FROM working_time WHERE dt = ?", (date,)):
+        return True
+    return False
+
+
+def insert_working_time(date, vm_start, vm_end, nm_start, nm_end):
+    total_time = (vm_end - vm_start) + (nm_end - nm_start)
+    conn = sqlite3.connect('WorkTimeWatch.sqlite')
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO working_time VALUES (?, ?, ?, ?, ?, ?)",
+        (date, vm_start, vm_end, nm_start, nm_end, total_time)
+    )
+    conn.commit()
+
+
+def update_working_time(date, vm_start, vm_end, nm_start, nm_end):
+    total_time = (vm_end - vm_start) + (nm_end - nm_start)
+    conn = sqlite3.connect('WorkTimeWatch.sqlite')
+    cur = conn.cursor()
+    cur.execute(
+        "UPDATE working_time SET vm_start = ?, vm_end = ?, nm_start = ?, nm_end = ?, total_time = ? WHERE dt = ?",
+        (vm_start, vm_end, nm_start, nm_end, total_time, date)
+    )
+    conn.commit()
+# === END WORKING TIME ========
 
 if __name__ == "__main__":
     print(f"get_params(): {get_params()}")
