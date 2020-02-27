@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import time
+from datetime import time, date, datetime
 
 CONN = sqlite3.connect('WorkTimeWatch.sqlite')
 CURSOR = CONN.cursor()
@@ -49,7 +49,9 @@ def exists_working_time_entry(date):
 
 
 def insert_working_time(date, vm_start, vm_end, nm_start, nm_end):
-    total_time = (vm_end - vm_start) + (nm_end - nm_start)
+    vm_time = datetime.combine(date.min, vm_end) - datetime.combine(date.min, vm_start)
+    nm_time = datetime.combine(date.min, nm_end) - datetime.combine(date.min, nm_start)
+    total_time = vm_time + nm_time
     conn = sqlite3.connect('WorkTimeWatch.sqlite')
     cur = conn.cursor()
     cur.execute(
